@@ -198,6 +198,203 @@
 			<Y>0</Y>
 		</HitMarker>
 	</Elements>
+		<!--
+		ImmersiveTweaks
+		
+		Concept and Code Scrapping By Commanderbass.
+		Active Effects, Emote Bubble, Stealth Meter, Perkpopup, Code Sanity Checking, and So Much More By Ms.Zelia 
+	
+		Explaination for the Standard Options Provided:
+		
+		Hide: 
+			True: Hide the Listed Hud Element. Same as Setting Scale to 0 but Allows You to Keep Scale Settings
+			False: Display as defined by other parms.
+			
+		VaTs:
+			True: Hide the Element Unless User is Using Vats.
+			False: Display as defined by other parms.
+			
+		Crouch: 
+			True: Hide the Element Unless User is Crouched.
+			False: Display as defined by other parms.
+			
+		Fade:
+			True: Hide the Element when ABOVE the percent defined by FadePer.
+				  IE if HP FadePer = 20 Your Hp Will Only Appear When You Drop to 19.9% Hp.
+			False: Display as defined by other parms.
+		
+			
+		Known Bugs:
+		
+		1} Sometimes When Looking at a Container the HUD will Appear for a Frame.
+		
+		2} Some Elements Will Flicker for a Single Frame When First Set to Hidden.
+			Fixed Where I Could.
+			
+		3} Some Options Take a Second to Update Their Settings.
+		
+		For Elements Not Covered Such as Level Up Animation Try Fanfare Free by Mapex:
+		Nexus Link: https://www.nexusmods.com/fallout76/mods/1293
+	-->
+	<ImmersiveTweaks>
+		<Debug>
+			<Display>false</Display>
+		</Debug>
+		<WaterMark>
+			<!--Settings for Default HUD Editor WaterMark-->
+			<HideDefault>true</HideDefault>
+			<CustomWaterMark>true</CustomWaterMark>
+				<CustomWaterMarkEntry>Like And Subscribe</CustomWaterMarkEntry>
+			<!--Settings for HUD Editor Edit Mode WaterMark-->
+			<HideEditMode>true</HideEditMode>
+			<CustomEditMark>true</CustomEditMark>
+				<CustomEditMarkEntry>Edit Mode Enabled</CustomEditMarkEntry>
+		</WaterMark>
+		<ActiveEffects>
+			<Hide>false</Hide>
+			<Crouch>false</Crouch>
+		<!--Only Display Negative Effects IE Overweight, Withdraw, Ect. Updates When You Gain a New Effect.-->
+			<OnlyNegativeEffects>false</OnlyNegativeEffects>
+		</ActiveEffects>
+		<Ap>
+			<Hide>false</Hide>
+			<Crouch>false</Crouch>
+			<VaTs>false</VaTs>
+			<Fade>false</Fade>
+				<FadePer>25</FadePer>
+		</Ap>
+		<Compass>
+			<Hide>false</Hide>
+		<!--Weird Base Game Bug: Sometimes When Crouched You Will Lose Compass Markers for NPCs.-->
+			<Crouch>false</Crouch>
+		</Compass>
+		<Emote>
+		<!--Hides the Emote Widget on the Side of the Screen-->
+			<HideEmoteWidget>false</HideEmoteWidget>
+		<!--Disables All Above Head Pop-Ups. Includes: Emotes, Trade Pop-Ups, Revive Requests, Fear Emotes.-->
+			<HidePlayerEmoteBubble>false</HidePlayerEmoteBubble>
+		</Emote>
+		<FusionCoreMeter>
+			<Hide>false</Hide>
+			<Crouch>false</Crouch>
+			<VaTs>false</VaTs>
+			<Fade>false</Fade>
+				<FadePer>10</FadePer>
+		</FusionCoreMeter>
+		<FusionCoreWarning>
+			<Hide>false</Hide>
+		<!--Allows You to Edit The Text Shown When in the 2 States. Updates on State Change-->		
+			<CustomText>
+				<Enable>false</Enable>
+				<LowBtry>Shit, Cores Getting Low</LowBtry>
+				<NoBtry>Fuck, Out of Juice</NoBtry>
+			</CustomText>
+		<!--
+		Scale Does Nothing Above Max Scale [1.5].
+		-->
+			<Scale>1</Scale>
+			<X>0</X>
+			<Y>0</Y>
+		</FusionCoreWarning>
+		<HungerThirst>
+			<Hide>false</Hide>
+			<Crouch>false</Crouch>
+		</HungerThirst>
+		<Hp>
+			<Hide>false</Hide>
+			<Crouch>false</Crouch>
+			<VaTs>false</VaTs>
+			<Fade>false</Fade>
+				<FadePer>10</FadePer>
+		</Hp>
+		<!--Scale and movment options for the orginal improved healthbar mod [https://www.nexusmods.com/fallout76/mods/368]
+			Only enable if you are running the mod, and if you want to edit the postion
+			Only edits the HP% Counter.-->
+		<ImprovedHealthBar>
+			<Enable>false</Enable>
+				<Scale>1.0</Scale>
+				<X>-250</X>
+				<Y>0</Y>
+		</ImprovedHealthBar>
+		<Indicators>
+		<!--Hides the Arrow Pointing at Nearby Explosion Sources-->
+			<HideExplosiveIndicators>false</HideExplosiveIndicators>
+		<!--Hides the Arrow Indicating Damage Taken and its Direction-->
+			<HideDirectionalHitIndicator>false</HideDirectionalHitIndicator>
+		<!--Scale Options for the Floating Dmg Numbers. -->
+			<FloatingDmgNumbScale>1.0</FloatingDmgNumbScale>
+		</Indicators>
+		<InteractPrompts>
+		<!--Quickloot (which annoyingly) applies to some containers rollover-->
+			<QuickLoot>
+				<Hide>false</Hide>
+				<Crouch>false</Crouch>
+			</QuickLoot>
+		<!--Frobber is interact prompts like unlicking locked doors and touching NPCs-->
+			<Frobber>
+				<Hide>false</Hide>
+				<Crouch>false</Crouch>
+			</Frobber>
+		<!--RollOver is essentially the same as Frobber (interact prompts)-->
+			<RollOver>
+				<Hide>false</Hide>
+				<Crouch>false</Crouch>
+			</RollOver>
+		</InteractPrompts>
+		<PerkPopUp>
+			<Hide>false</Hide>
+		<!--
+			Scale Does Nothing Above Max Scale [1.5].
+		-->
+			<Scale>1</Scale>
+			<X>0</X>
+			<Y>0</Y>
+		</PerkPopUp>
+		<RadDamageIndicator>
+			<Hide>false</Hide>
+				<OnlyHideSymbol>false</OnlyHideSymbol>
+				<OnlyHideText>false</OnlyHideText>
+			<CustomText>
+				<Enable>false</Enable>
+				<Text>Air is Getting Heavy</Text>
+			</CustomText>
+		<!--
+		Scale Does Nothing Above Max Scale [1.5].
+		-->
+			<Scale>1</Scale>
+			<X>0</X>
+			<Y>0</Y>
+		</RadDamageIndicator>
+		<StealthMeter>
+			<Hide>false</Hide>
+		<!--Only Display When in Caution or Danger. Can Run With ThiefSense.-->
+			<SpiderSense>false</SpiderSense>
+		<!--Only Display When Detected. Can Run with SpiderSense.-->
+			<ThiefSense>false</ThiefSense>
+		<!--Allows You to Edit The Text Shown When in the 4 States. Updates on State Change-->	
+			<CustomText>
+				<Enable>false</Enable>
+				<HiddenText>QUIET AS THE GRAVE</HiddenText>
+				<DetectedText>FRIENDLY?</DetectedText>
+				<CautionText>SHIT....</CautionText>
+				<DangerText>SHIT! FUCK!</DangerText>
+			</CustomText>
+		<!--Disables the [] on the Stealth Meter.-->
+		<DisableBrackets>false</DisableBrackets>
+		</StealthMeter>
+		<TeamPanel>
+		<!--Any Team Options Will Also Hide the Area Chat indicator-->
+			<Hide>false</Hide>
+			<Crouch>false</Crouch>
+		<!--Hides the Team Panel if You Are the Only Player on Team.-->
+			<HideEmptyTeam>false</HideEmptyTeam>
+		<!--Hides the Small Emote Icon.-->	
+			<HideEmote>false</HideEmote>
+		</TeamPanel>
+		<Xp>
+			<Hide>false</Hide>
+		</Xp>
+	</ImmersiveTweaks>
 	<!--
 		A bit of a small explaination for the options:
 		RGB: Color you want in hex form (FFFFCB is the default HUD color)
