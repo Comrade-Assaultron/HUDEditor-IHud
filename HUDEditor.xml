@@ -24,6 +24,7 @@
 			<Y>0</Y>
 		</RollOver>
 		<Compass>
+			<Hide>false</Hide>
 			<Scale>1</Scale>
 			<X>0</X>
 			<Y>0</Y>
@@ -187,7 +188,7 @@
 			<!--
 				Shows health percentage near the bar, a la Show Health Re-Redux
 			-->
-			<ShowHealthPercent>false</ShowHealthPercent>
+			<ShowHealthPercent>true</ShowHealthPercent>
 			
 			<!-- top, bottom, left, right -->
 			<HealthPercentLocation>top</HealthPercentLocation>
@@ -198,11 +199,13 @@
 			<Y>0</Y>
 		</HitMarker>
 	</Elements>
-		<!--
+	<!--
 		ImmersiveTweaks
 		
-		Concept and Code Scrapping By Commanderbass.
-		Active Effects, Emote Bubble, Stealth Meter, Perkpopup, Code Sanity Checking, and So Much More By Ms.Zelia 
+		Concept and Code Scrapping By Commanderbass:
+		https://next.nexusmods.com/profile/Commanderbass?gameId=2590
+		Active Effects, Emote Bubble, Stealth Meter, Perkpopup, Code Sanity Checking, and So Much More By Ms.Zelia:
+		https://next.nexusmods.com/profile/MsZelia?gameId=2590
 	
 		Explaination for the Standard Options Provided:
 		
@@ -253,7 +256,11 @@
 		<ActiveEffects>
 			<Hide>false</Hide>
 			<Crouch>false</Crouch>
-		<!--Only Display Negative Effects IE Overweight, Withdraw, Ect. Updates When You Gain a New Effect.-->
+		<!--
+			Only Display Negative Effects IE Overweight, Withdraw, Ect.
+			Wont Hide Overkill Stacks.
+			Updates When You Gain a New Effect.
+		-->
 			<OnlyNegativeEffects>false</OnlyNegativeEffects>
 		</ActiveEffects>
 		<Ap>
@@ -274,6 +281,19 @@
 		<!--Disables All Above Head Pop-Ups. Includes: Emotes, Trade Pop-Ups, Revive Requests, Fear Emotes.-->
 			<HidePlayerEmoteBubble>false</HidePlayerEmoteBubble>
 		</Emote>
+		<FeralMeter>
+			<Hide>false</Hide>
+			<Crouch>false</Crouch>
+			<VaTs>false</VaTs>
+			<Fade>false</Fade>
+				<FadePer>75</FadePer>
+		<!--
+			Scale Does Nothing Above Max Scale [1.5].
+		-->
+			<Scale>1.0</Scale>
+			<X>0</X>
+			<Y>0</Y>	
+		</FeralMeter>
 		<FusionCoreMeter>
 			<Hide>false</Hide>
 			<Crouch>false</Crouch>
@@ -283,7 +303,10 @@
 		</FusionCoreMeter>
 		<FusionCoreWarning>
 			<Hide>false</Hide>
-		<!--Allows You to Edit The Text Shown When in the 2 States. Updates on State Change-->		
+		<!--
+			Allows You to Edit The Text Shown When in the 2 States. 
+			Updates on State Change
+		-->		
 			<CustomText>
 				<Enable>false</Enable>
 				<LowBtry>Shit, Cores Getting Low</LowBtry>
@@ -307,11 +330,13 @@
 			<Fade>false</Fade>
 				<FadePer>10</FadePer>
 		</Hp>
-		<!--Scale and movment options for the orginal improved healthbar mod [https://www.nexusmods.com/fallout76/mods/368]
+		<!--
+			Scale and movment options for the orginal improved healthbar mod [https://www.nexusmods.com/fallout76/mods/368]
 			Only enable if you are running the mod, and if you want to edit the postion
-			Only edits the HP% Counter.-->
+			Only edits the HP% Counter.
+		-->
 		<ImprovedHealthBar>
-			<Enable>false</Enable>
+			<Enable>true</Enable>
 				<Scale>1.0</Scale>
 				<X>-250</X>
 				<Y>0</Y>
@@ -341,6 +366,15 @@
 				<Crouch>false</Crouch>
 			</RollOver>
 		</InteractPrompts>
+		<OverkillStacks>
+			<Hide>false</Hide>
+			<VaTs>false</VaTs>
+		<!--
+			Movment options for Overkill Stacks
+		-->
+				<X>0</X>
+				<Y>0</Y>
+		</OverkillStacks>
 		<PerkPopUp>
 			<Hide>false</Hide>
 		<!--
@@ -399,7 +433,7 @@
 		A bit of a small explaination for the options:
 		RGB: Color you want in hex form (FFFFCB is the default HUD color)
 		NOTE: DO NOT use very dark or very bright colors! Try to pick something pastel or less in saturation.
-		Brightness, Contrast, Saturation: self explainatory. Absolute ranges are from -100 to 100, but 00 to 50 is the highly recommended min-max
+		Brightness, Contrast, Saturation: self explainatory. Absolute ranges are from -100 to 100, but 00 to 50 is the highly recommended min-max.
 	-->
 	<Colors>
 		<!--Tints the hitmarker towards the given colour-->
@@ -422,7 +456,7 @@
 			<AlwaysShowThirstHunger>false</AlwaysShowThirstHunger>
 			
 			<!--EditMode allows you to view changes to this file in real time-->
-			<EditMode>false</EditMode>
+			<EditMode>true</EditMode>
 			
 			<!--DO NOT CHANGE THIS SETTING, IT WILL BE REMOVED AT A FUTURE TIME-->
 			<CustomCrosshair>true</CustomCrosshair>
