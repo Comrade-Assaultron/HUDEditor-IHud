@@ -387,6 +387,14 @@ package
       
       public var ImpHealthLock:int = 0;
       
+      public var OverkillPos:Point = new Point();
+      
+      public var OverkillLock:int = 0;
+      
+      public var FeralMScale:Number = 1;
+      
+      public var FeralMPos:Point = new Point();
+      
       private var reloadCount:int = 0;
       
       private var oLeftMeterPos:Point = new Point();
@@ -448,6 +456,10 @@ package
       private var oRadCountPos:Point = new Point();
       
       private var oImpHealthPos:Point = new Point();
+      
+      private var oOverkillPos:Point = new Point();
+      
+      private var oFeralMPos:Point = new Point();
       
       private var VisibilityChanged:int = 0;
       
@@ -540,6 +552,8 @@ package
             this.oFusionPopUpPos.y = this.topLevel.RightMeters_mc.PowerArmorLowBatteryWarning_mc.y;
             this.oRadCountPos.x = this.topLevel.LeftMeters_mc.RadsMeter_mc.x;
             this.oRadCountPos.y = this.topLevel.LeftMeters_mc.RadsMeter_mc.y;
+            this.oFeralMPos.x = this.topLevel.RightMeters_mc.FeralMeter_mc.x;
+            this.oFeralMPos.y = this.topLevel.RightMeters_mc.FeralMeter_mc.y;
             this.oRollOverPos.x = this.topLevel.CenterGroup_mc.RolloverWidget_mc.x;
             this.oRollOverPos.y = this.topLevel.CenterGroup_mc.RolloverWidget_mc.y;
             this.oFusionPos.x = this.topLevel.RightMeters_mc.HUDFusionCoreMeter_mc.x;
@@ -712,6 +726,7 @@ package
          var isAboveXHp:Boolean;
          var isAboveXAp:Boolean;
          var isAboveXFc:Boolean;
+         var isAboveXFm:Boolean;
          var FcLevel:Number;
          var negativeEffects:int;
          var CurrentTeamCount:Number;
@@ -729,12 +744,14 @@ package
          var hungerFinal:Number = NaN;
          var thirTemp:Number = NaN;
          var hungTemp:Number = NaN;
+         var iiiii:int = 0;
          var iiii:int = 0;
          var iii:int = 0;
          var ii:int = 0;
          var i:int = 0;
          var di:int = 0;
          var dii:int = 0;
+         var diii:int = 0;
          var tfTemp:* = undefined;
          var color1:* = undefined;
          if(this.xmlConfigHC.ImmersiveTweaks)
@@ -746,6 +763,7 @@ package
             isAboveXHp = this.topLevel.LeftMeters_mc.HPMeter_mc.MeterBar_mc.Percent * 100 > Number(this.xmlConfigHC.ImmersiveTweaks.Hp.FadePer);
             isAboveXAp = this.topLevel.RightMeters_mc.ActionPointMeter_mc.MeterBar_mc.Percent * 100 > Number(this.xmlConfigHC.ImmersiveTweaks.Ap.FadePer);
             isAboveXFc = this.topLevel.RightMeters_mc.HUDFusionCoreMeter_mc.Meter_mc.currentFrame / this.topLevel.RightMeters_mc.HUDFusionCoreMeter_mc.Meter_mc.totalFrames * 100 > Number(this.xmlConfigHC.ImmersiveTweaks.FusionCore.FadePer);
+            isAboveXFm = 100 - Math.min(this.topLevel.RightMeters_mc.FeralMeter_mc.FeralMeterInternal_mc.currentFrame,100) > Number(this.xmlConfigHC.ImmersiveTweaks.FeralMeter.FadePer);
             FcLevel = this.topLevel.RightMeters_mc.HUDFusionCoreMeter_mc.Meter_mc.currentFrame / this.topLevel.RightMeters_mc.HUDFusionCoreMeter_mc.Meter_mc.totalFrames * 100;
             this.debugTextHC.text = "";
             if(this.xmlConfigHC.ImmersiveTweaks.Debug.Display == "true")
@@ -755,11 +773,13 @@ package
                this.displayText("crit: " + this.topLevel.BottomCenterGroup_mc.CritMeter_mc.visible + ", Hp.VaTs:" + (this.xmlConfigHC.ImmersiveTweaks.Hp.VaTs == "true") + ", !Hp.VaTs:" + (this.xmlConfigHC.ImmersiveTweaks.Hp.VaTs != "true"));
                this.displayText("hp%: " + this.topLevel.LeftMeters_mc.HPMeter_mc.MeterBar_mc.Percent * 100 + ", Hp.Fade:" + (this.xmlConfigHC.ImmersiveTweaks.Hp.Fade == "true") + ", Hp.FadePer:" + Number(this.xmlConfigHC.ImmersiveTweaks.Hp.FadePer));
                this.displayText("Fusion Core%: " + FcLevel);
-               this.displayText("Test Element: " + this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(10));
+               this.displayText("Feral Meter%: " + (100 - Math.min(this.topLevel.RightMeters_mc.FeralMeter_mc.FeralMeterInternal_mc.currentFrame,100)) + ", Feral.Fade:" + (this.xmlConfigHC.ImmersiveTweaks.FeralMeter.Fade == "true") + ", Feral.FadePer:" + Number(this.xmlConfigHC.ImmersiveTweaks.FeralMeter.FadePer));
+               this.displayText("Feral Fade Above % Level: " + isAboveXFm);
+               this.displayText("Test Element: " + this.topLevel.RightMeters_mc.FeralMeter_mc);
                di = 0;
-               while(di < this.topLevel.LeftMeters_mc.HPMeter_mc.numChildren)
+               while(di < this.topLevel.RightMeters_mc.FeralMeter_mc.numChildren)
                {
-                  displayText(di + ":" + getQualifiedClassName(this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(di)));
+                  displayText(di + ":" + getQualifiedClassName(this.topLevel.RightMeters_mc.FeralMeter_mc.FeralMeterInternal_mc.getChildAt(di)));
                   di++;
                }
             }
@@ -975,19 +995,19 @@ package
             {
                iii = 0;
                negativeEffects = 0;
-               while(iii < this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.numChildren)
+               while(iii < this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).numChildren)
                {
-                  if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(iii).currentFrame == 2)
+                  if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(iii).getChildAt(3).currentFrame == 69 || this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(iii).currentFrame == 2)
                   {
-                     if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(iii).visible)
+                     if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(iii).visible)
                      {
                         negativeEffects++;
-                        this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(iii).x = 4 - negativeEffects * 39;
+                        this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(iii).x = 4 - negativeEffects * 39;
                      }
                   }
                   else
                   {
-                     this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(iii).visible = false;
+                     this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(iii).visible = false;
                   }
                   iii++;
                }
@@ -1352,6 +1372,115 @@ package
                this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(10).scaleY = 1;
                ImpHealthLock = 0;
             }
+            if(this.xmlConfigHC.ImmersiveTweaks.OverkillStacks.Hide == "true")
+            {
+               iiiii = 0;
+               while(iiiii < this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).numChildren)
+               {
+                  if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(iiiii).getChildAt(3).currentFrame == 69)
+                  {
+                     this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(iiiii).visible = false;
+                  }
+                  iiiii++;
+               }
+            }
+            else if(this.xmlConfigHC.ImmersiveTweaks.OverkillStacks.VaTs == "true")
+            {
+               iiiii = 0;
+               while(iiiii < this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).numChildren)
+               {
+                  if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(iiiii).getChildAt(3).currentFrame == 69)
+                  {
+                     this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(iiiii).visible = isVats;
+                  }
+                  iiiii++;
+               }
+            }
+            else
+            {
+               iiiii = 0;
+               while(iiiii < this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).numChildren)
+               {
+                  if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(iiiii).getChildAt(3).currentFrame == 69)
+                  {
+                     if(!this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(iiiii).visible)
+                     {
+                        this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(iiiii).visible = true;
+                     }
+                  }
+                  iiiii++;
+               }
+            }
+            if(this.xmlConfigHC.ImmersiveTweaks.OverkillStacks.X || this.xmlConfigHC.ImmersiveTweaks.OverkillStacks.Y)
+            {
+               this.OverkillPos.x = this.xmlConfigHC.ImmersiveTweaks.OverkillStacks.X;
+               this.OverkillPos.y = this.xmlConfigHC.ImmersiveTweaks.OverkillStacks.Y;
+               diii = 0;
+               while(diii < this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).numChildren)
+               {
+                  if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(diii).getChildAt(3).currentFrame == 69)
+                  {
+                     if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(diii).visible)
+                     {
+                        if(OverkillLock == 0)
+                        {
+                           this.oOverkillPos.x = this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(diii).x;
+                           this.oOverkillPos.y = this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(diii).y;
+                           OverkillLock = 1;
+                        }
+                        else
+                        {
+                           this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(diii).x = this.oOverkillPos.x + this.OverkillPos.x;
+                           this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(diii).y = this.oOverkillPos.y + this.OverkillPos.y;
+                        }
+                     }
+                  }
+                  diii++;
+               }
+            }
+            isVisible = true;
+            isNotConfigCrouchOrVats = false;
+            if(this.xmlConfigHC.ImmersiveTweaks.FeralMeter.Hide == "true")
+            {
+               isVisible = false;
+            }
+            else
+            {
+               if(this.xmlConfigHC.ImmersiveTweaks.FeralMeter.Crouch == "true")
+               {
+                  if(this.xmlConfigHC.ImmersiveTweaks.FeralMeter.VaTs == "true")
+                  {
+                     isVisible = isCrouched || isVats;
+                  }
+                  else
+                  {
+                     isVisible = isCrouched;
+                  }
+               }
+               else if(this.xmlConfigHC.ImmersiveTweaks.FeralMeter.VaTs == "true")
+               {
+                  isVisible = isVats;
+               }
+               else
+               {
+                  isNotConfigCrouchOrVats = true;
+               }
+               if(this.xmlConfigHC.ImmersiveTweaks.FeralMeter.Fade == "true")
+               {
+                  if(isVisible)
+                  {
+                     if(isNotConfigCrouchOrVats && isAboveXFm)
+                     {
+                        isVisible = false;
+                     }
+                  }
+                  else if(!isAboveXFm)
+                  {
+                     isVisible = true;
+                  }
+               }
+            }
+            this.topLevel.RightMeters_mc.FeralMeter_mc.visible = isVisible;
          }
          if(this.xmlConfigHC.Elements.LeftMeter.ShowHPLabel == "false")
          {
@@ -1549,32 +1678,32 @@ package
          if(this.xmlConfigHC.Colors.HUD.EnableRecoloring == "true")
          {
             ii = 0;
-            while(ii < this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.numChildren)
+            while(ii < this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).numChildren)
             {
-               if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(2).currentFrame == 50)
+               if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(3).currentFrame == 50)
                {
-                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(0).filters = [rightmetersInvColorMatrix];
-                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(1).filters = [rightmetersInvColorMatrix];
+                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(0).filters = [rightmetersInvColorMatrix];
+                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(1).filters = [rightmetersInvColorMatrix];
                }
-               else if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(2).currentFrame == 2)
+               else if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(3).currentFrame == 2)
                {
-                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(0).filters = [rightmetersInvColorMatrix];
-                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(1).filters = [rightmetersInvColorMatrix];
+                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(0).filters = [rightmetersInvColorMatrix];
+                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(1).filters = [rightmetersInvColorMatrix];
                }
-               else if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(2).currentFrame == 43)
+               else if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(3).currentFrame == 43)
                {
-                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(0).filters = [rightmetersInvColorMatrix];
-                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(1).filters = [rightmetersInvColorMatrix];
+                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(0).filters = [rightmetersInvColorMatrix];
+                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(1).filters = [rightmetersInvColorMatrix];
                }
-               else if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(2).currentFrame == 66)
+               else if(this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(3).currentFrame == 66)
                {
-                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(0).filters = [rightmetersInvColorMatrix];
-                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(1).filters = [rightmetersInvColorMatrix];
+                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(0).filters = [rightmetersInvColorMatrix];
+                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(1).filters = [rightmetersInvColorMatrix];
                }
                else
                {
-                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(0).filters = null;
-                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.ClipHolderInternal.getChildAt(ii).getChildAt(1).filters = null;
+                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(0).filters = null;
+                  this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.getChildAt(1).getChildAt(ii).getChildAt(1).filters = null;
                }
                ii++;
             }
@@ -1829,6 +1958,8 @@ package
             this.topLevel.HUDNotificationsGroup_mc.Messages_mc.y = this.oNotificationPos.y + this.NotificationPos.y;
             this.topLevel.LeftMeters_mc.RadsMeter_mc.x = this.oRadCountPos.x + this.RadCountPos.x;
             this.topLevel.LeftMeters_mc.RadsMeter_mc.y = this.oRadCountPos.y + this.RadCountPos.y;
+            this.topLevel.RightMeters_mc.FeralMeter_mc.x = this.oFeralMPos.x + this.FeralMPos.x;
+            this.topLevel.RightMeters_mc.FeralMeter_mc.y = this.oFeralMPos.y + this.FeralMPos.y;
             this.topLevel.HUDNotificationsGroup_mc.CurrencyUpdates_mc.x = this.oCurrencyPos.x + this.CurrencyPos.x;
             this.topLevel.HUDNotificationsGroup_mc.CurrencyUpdates_mc.y = this.oCurrencyPos.y + this.CurrencyPos.y;
             this.topLevel.TopRightGroup_mc.NewQuestTracker_mc.x = this.oQuestPos.x + this.QuestPos.x;
@@ -2110,6 +2241,17 @@ package
                this.RadCountScale = 1;
                this.RadCountPos.x = 0;
                this.RadCountPos.y = 0;
+            }
+            if(this.xmlConfigHC.ImmersiveTweaks.FeralMeter)
+            {
+               this.FeralMPos.x = this.xmlConfigHC.ImmersiveTweaks.FeralMeter.X;
+               this.FeralMPos.y = this.xmlConfigHC.ImmersiveTweaks.FeralMeter.Y;
+            }
+            else if(!this.xmlConfigHC.ImmersiveTweaks.FeralMeter)
+            {
+               this.FeralMScale = 1;
+               this.FeralMPos.x = 0;
+               this.FeralMPos.y = 0;
             }
             this.RepUpdatesScale = this.xmlConfigHC.Elements.ReputationUpdates.Scale;
             this.RepUpdatesPos.x = this.xmlConfigHC.Elements.ReputationUpdates.X;
@@ -2447,6 +2589,16 @@ package
             {
                this.topLevel.LeftMeters_mc.RadsMeter_mc.scaleX = 1;
                this.topLevel.LeftMeters_mc.RadsMeter_mc.scaleY = 1;
+            }
+            if(this.FeralMScale <= this.maxScale)
+            {
+               this.topLevel.RightMeters_mc.FeralMeter_mc.scaleX = this.FeralMScale;
+               this.topLevel.RightMeters_mc.FeralMeter_mc.scaleY = this.FeralMScale;
+            }
+            else
+            {
+               this.topLevel.RightMeters_mc.FeralMeter_mc.scaleX = 1;
+               this.topLevel.RightMeters_mc.FeralMeter_mc.scaleY = 1;
             }
             if(this.RollOverScale <= this.maxScale)
             {
