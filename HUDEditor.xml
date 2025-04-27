@@ -1,209 +1,429 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <HUDEditor>
-	<Elements>
+
+	<Mod_Options>
+	
+		<!--EditMode allows you to view changes to this file in real time-->
+		<EditMode>true</EditMode>
+		
+		<!-- 
+			No Clue Why the Default is 1.5. 
+			Change at your Own Risk.
+		-->
+		<MaxScale>1.5</MaxScale>
+		
+		<!--Settings for HUD Editor WaterMark in the Upper Right-->
+		<WaterMark>
+			<!--Settings for Default HUD Editor WaterMark-->
+			<HideDefault>true</HideDefault>
+			<CustomWaterMark>true</CustomWaterMark>
+				<CustomWaterMarkEntry>Like And Subscribe</CustomWaterMarkEntry>
+			<!--Settings for HUD Editor Edit Mode WaterMark-->
+			<HideEditMode>true</HideEditMode>
+			<CustomEditMark>true</CustomEditMark>
+				<CustomEditMarkEntry>Edit Mode Enabled</CustomEditMarkEntry>
+		</WaterMark>
+		
+	</Mod_Options>
+	
+	<Reposition_Elements>
+		
 		<!--
 			All X and Y positions are relative to their default position on the HUD.
-			X is left and right; Y is up and down.
+			Scale is the Size of the Obj
+			X is Left and Right
+			Y is Up and Down.
+			PowerArmor is when you use the Power Armor Hud [Toggleable in the Game Settings]
 		-->
-		<!--Quickloot, annoyingly, applies to some containers rollover-->
-		<QuickLoot>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</QuickLoot>
-		<!--Frobber are interact prompts like unlicking locked doors and interacting with NPCs-->
-		<Frobber>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</Frobber>
-		<!--RollOver is essentially the same as Frobber (interact prompts)-->
-		<RollOver>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</RollOver>
-		<Compass>
-			<Hide>false</Hide>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</Compass>
-		<QuestTracker>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</QuestTracker>
-		<Notification>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</Notification>
-		<!--Health meter-->
-		<LeftMeter>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-			<!--Shows/hides the "HP" text to the left of the HP meter-->
-			<ShowHPLabel>true</ShowHPLabel>
-			<!--Moves the HP text to the left or right of the meter-->
-			<HPLabelSide>left</HPLabelSide>
-			<!--Shows/hides the HP bar background. Looks strange with ImprovedHealthBar, not a bug.-->
-			<ShowBarBG>true</ShowBarBG>
-		</LeftMeter>
-		<!--AP meter, active effects-->
-		<RightMeter>
-			<Parts>
-				<APMeter>
-					<Scale>1</Scale>
-					<X>0</X>
-					<Y>0</Y>
-					<!--Shows/hides the "AP" text-->
-					<ShowAPLabel>true</ShowAPLabel>
-					<!--Moves the AP text to the left or right of the meter-->
-					<APLabelSide>right</APLabelSide>
-					<!--Shows/hides the AP bar background-->
-					<ShowBarBG>true</ShowBarBG>
-				</APMeter>
-				<ActiveEffects>
-					<Scale>1</Scale>
-					<X>0</X>
-					<Y>0</Y>
-					<PowerArmor>
-						<X>0</X>
-						<Y>0</Y>
-					</PowerArmor>
-				</ActiveEffects>
-				<HungerMeter>
-					<Scale>1</Scale>
-					<X>0</X>
-					<Y>0</Y>
-					<PowerArmor>
-						<Scale>1</Scale>
-						<X>0</X>
-						<Y>0</Y>
-					</PowerArmor>
-				</HungerMeter>
-				<ThirstMeter>
-					<Scale>1</Scale>
-					<X>0</X>
-					<Y>0</Y>
-					<PowerArmor>
-						<Scale>1</Scale>
-						<X>0</X>
-						<Y>0</Y>
-					</PowerArmor>
-				</ThirstMeter>
-				<AmmoCount>
-					<Scale>1</Scale>
-					<X>0</X>
-					<Y>0</Y>
-				</AmmoCount>
-				<ExplosiveAmmoCount>
-					<Scale>1</Scale>
-					<X>0</X>
-					<Y>0</Y>
-					<PowerArmor>
-						<X>0</X>
-						<Y>0</Y>
-					</PowerArmor>
-				</ExplosiveAmmoCount>	
-				<FlashLightWidget>
-					<!--There is no FlashLight icon in Fallout 76 by default...
-						Enable this setting to restore it and enable scaling and moving it-->
-					<RestoreFlashLightIcon>false</RestoreFlashLightIcon>
-					<Scale>1</Scale>	
-					<X>0</X>
-					<Y>0</Y>
-				</FlashLightWidget>
-				<Emote>
-					<Scale>1</Scale>
-					<X>0</X>
-					<Y>0</Y>
-				</Emote>
-			</Parts>
-		</RightMeter>
-		<!--Sneaking meter (hidden, danger, etc)-->
-		<StealthMeter>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</StealthMeter>
-		<!--quest/event complete/rewards list-->
-		<Announce>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</Announce>
-		<!--team mate list-->
-		<TeamPanel>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-			<PowerArmor>
+		
+		<!--Bar Showing Your Crit Charge in Vats-->
+			<CritMeter>
 				<Scale>1</Scale>
 				<X>0</X>
 				<Y>0</Y>
-			</PowerArmor>
-		</TeamPanel>
-		<FusionCoreMeter>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</FusionCoreMeter>
-		<Subtitles>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</Subtitles>
-		<XPBar>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</XPBar>
-		<CritMeter>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</CritMeter>
-		<CurrencyUpdates>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</CurrencyUpdates>
-		<LevelUpAnimation>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</LevelUpAnimation>
-		<ReputationUpdates>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</ReputationUpdates>
-		<EnemyHealthMeter>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-			<!--
-				Shows health percentage near the bar, a la Show Health Re-Redux
-			-->
-			<ShowHealthPercent>true</ShowHealthPercent>
+			</CritMeter>
+		
+		<!-- Direction and Map Marker Indicator -->
+			<Compass>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</Compass>
+		
+		<!--Hp Bar For Targeted Enemy-->
+			<EnemyHealthMeter>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</EnemyHealthMeter>
+		
+		<!--Top Right List of Active Quests Tagged in Pipboy Questlog-->
+			<QuestTracker>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</QuestTracker>
+		
+		<!--Sneaking Meter (Hidden, Danger, etc)-->
+			<StealthMeter>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</StealthMeter>
+		
+		<!-- List of Players on Your Team-->
+			<TeamPanel>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+				<PowerArmor>
+					<Scale>1</Scale>
+					<X>0</X>
+					<Y>0</Y>
+				</PowerArmor>
+			</TeamPanel>
+		
+        <!-- Pop-Up when You Shoot Something -->
+			<HitMarker>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</HitMarker>
+		
+		<InteractPrompts>
 			
-			<!-- top, bottom, left, right -->
+		<!--Quickloot, annoyingly, applies to some containers rollover-->
+			<QuickLoot>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</QuickLoot>
+			
+		<!--Frobber are interact prompts like unlicking locked doors and interacting with NPCs-->
+			<Frobber>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</Frobber>
+			
+		<!--RollOver is essentially the same as Frobber (interact prompts)-->
+			<RollOver>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</RollOver>
+			
+		</InteractPrompts>
+		
+		<HUD_Notifications>
+		
+		<!-- quest/event complete/rewards list -->
+			<Announce>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</Announce>
+			
+		<!--Area/Team Voice Chat Indicator that List Players Talking Around You-->		
+			<AreaVoiceList>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</AreaVoiceList>
+			
+		<!-- Popup When You Gain / Lose Gold, Caps, Scrip, Ect. -->
+			<CurrencyUpdates>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</CurrencyUpdates>
+			
+		<!-- Small Emote Circle on the Lower Left Side of your Screen-->	
+			<Emote>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</Emote>
+			
+		<!--
+			Pop-up When Your Current Fusion Core Is Low or Empty,
+			And You Have No Spares
+		-->
+			<FusionCoreWarning>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</FusionCoreWarning>
+		
+		<!-- Pop-up Showing Your New Level -->		
+			<LevelUpAnimation>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</LevelUpAnimation>
+			
+		<!--Notifications are Pop-Ups Like Sneak damage, New Radio Signels, And World Event Msg Boxes-->
+			<Notification>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</Notification>
+		
+		<!-- 
+				Pop-up When Perk Activates Such as
+				Ricochet, Nerd Rage, Ect. 
+				Dosnt Effect the Sound 
+		-->
+			<PerkPopUp>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</PerkPopUp>
+			
+		<!-- Pop-Up When Taking Rad Dmg-->
+			<RadDamageIndicator>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</RadDamageIndicator>
+			
+		<!-- Change in Faction Rep Pop-Up -->
+			<ReputationUpdates>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</ReputationUpdates>
+		
+		<!-- Description of Onscreen Voicelines -->		
+			<Subtitles>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</Subtitles>
+		
+		<!-- Pop-Up Showing XP Gained from Action -->	
+			<XPBar>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</XPBar>
+			
+		</HUD_Notifications>
+		
+		<LeftMeters>
+			
+		<!-- 
+			Bar Shown in PA When PA HUD is Set to False
+			Tracks Fusion Core % and Amount.
+			Auto Detects if in Proper Hud / Class.
+		-->		
+			<FusionCoreMeter>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</FusionCoreMeter>
+			
+		<!-- Bar Showing Your Current Health -->	
+			<HpMeter>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</HpMeter>
+			
+		<!--
+			Bar for Ghouls that Shows Current Glow Level
+			Only Applies if Your Ghoul Class, Auto Detects
+		-->
+			<GlowMeter>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</GlowMeter>
+			
+		</LeftMeters>
+		
+		<RightMeters>
+			
+		<!--
+			Displayed Effects on the Bottom Right.
+			Overweight, Addiction, Mutations, Buffs, Ect.
+		-->
+			<ActiveEffects>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+				<PowerArmor>
+					<X>0</X>
+					<Y>0</Y>
+				</PowerArmor>
+			</ActiveEffects>
+			
+		<!-- Shows Current Amount of Ammo in Selected Gun -->	
+			<AmmoCount>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</AmmoCount>
+		
+		<!-- Bar Showing Current Ap Total -->
+			<APMeter>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</APMeter>
+			
+		<!-- Grenade / Throwable Counter -->
+			<ExplosiveAmmoCount>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+				<PowerArmor>
+					<X>0</X>
+					<Y>0</Y>
+				</PowerArmor>
+			</ExplosiveAmmoCount>
+			
+		<!--
+			Bar for Ghouls that Shows Current Feral Level
+			Only Applies if Your Ghoul Class, Auto Detects
+		-->
+			<FeralMeter>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</FeralMeter>
+		
+		<!--
+			Bar Showing Current Hunger Level
+			For Human Class Only, Auto Detects.
+		-->
+			<HungerMeter>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+				<PowerArmor>
+					<Scale>1</Scale>
+					<X>0</X>
+					<Y>0</Y>
+				</PowerArmor>
+			</HungerMeter>
+			
+		<!--
+			Bar Showing Current Thirst Level
+			For Human Class Only, Auto Detects.
+		-->	
+			<ThirstMeter>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+				<PowerArmor>
+					<Scale>1</Scale>
+					<X>0</X>
+					<Y>0</Y>
+				</PowerArmor>
+			</ThirstMeter>
+			
+		</RightMeters>
+		
+	</Reposition_Elements>
+	
+	<OtherImprovements>
+		
+		<APMeter>
+		<!--Shows/hides the "AP" text-->
+			<ShowAPLabel>true</ShowAPLabel>
+		<!--Moves the AP text to the left or right of the meter-->
+			<APLabelSide>right</APLabelSide>
+		<!--Shows/hides the AP bar background-->
+			<ShowBarBG>true</ShowBarBG>
+		</APMeter>
+		
+		<Crosshair>
+	
+		<!--Set to True if Using CustomCrosshair.xml-->
+			<CustomCrosshair>true</CustomCrosshair>	
+		
+		<!--You can set the opacity of the crosshair down below what the rest of the HUD is.-->
+			<CrosshairOpacity>1</CrosshairOpacity>
+		
+		</Crosshair>
+		
+		<!--
+			Shows health percentage near the bar, a la Show Health
+			Link to Original Mod: https://www.nexusmods.com/fallout76/mods/183
+			Latest Fork: https://www.nexusmods.com/fallout76/mods/1382
+				
+		-->
+		<EnemyHealthMeter>
+			<ShowHealthPercent>false</ShowHealthPercent>
+			<!-- 
+				Sets Postion to Either:
+				top, bottom, left, right 
+			-->
 			<HealthPercentLocation>top</HealthPercentLocation>
 		</EnemyHealthMeter>
-        <HitMarker>
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
-		</HitMarker>
-	</Elements>
+		
+		<!--
+			There is no FlashLight icon in Fallout 76 by default...
+			Enable this setting to restore it and enable scaling and moving it
+		-->
+		<FlashLightWidget>
+				<RestoreFlashLightIcon>false</RestoreFlashLightIcon>
+				<Scale>1</Scale>	
+				<X>0</X>
+				<Y>0</Y>
+		</FlashLightWidget>
+		
+		<HpMeter>
+		<!--Shows/hides the "HP" text to the left of the HP meter-->
+			<ShowHPLabel>true</ShowHPLabel>
+		<!--Moves the HP text to the left or right of the meter-->
+			<HPLabelSide>left</HPLabelSide>
+		<!--Shows/hides the HP bar background. Looks strange with ImprovedHealthBar, not a bug.-->
+			<ShowBarBG>true</ShowBarBG>
+		</HpMeter>
+		
+		<Hunger_ThirstTweaks>
+			<!--
+				Show a percentage value above the thirst and hunger bars
+				For more Percent Widgets try Hud Widgets: https://www.nexusmods.com/fallout76/mods/3124
+			-->
+				<ThirstHungerPercentShow>false</ThirstHungerPercentShow>
+				
+			<!--Prevents thirst and hunger from auto-hiding after a few seconds-->
+				<AlwaysShowThirstHunger>false</AlwaysShowThirstHunger>
+				
+		</Hunger_ThirstTweaks>
+		
+	</OtherImprovements>
+	
+	<OtherMods>
+		
+		<!--
+			Scale and movment options for the orginal improved healthbar mod [https://www.nexusmods.com/fallout76/mods/368]
+			Should work with Unoffical Forks
+			Only edits the HP% Counter not the lines on the HP.
+		-->
+		<ImprovedHealthBar>
+			<EnableEditing>false</EnableEditing>
+			<!--
+				Hide: Hides the Improved % and 
+				only shows the Segmented HP bar.
+			-->	
+				<Hide>false</Hide>
+				<Scale>1</Scale>
+				<X>325</X>
+				<Y>0</Y>
+		</ImprovedHealthBar>
+		
+	</OtherMods>
+	
 	<!--
 		ImmersiveTweaks
 		
 		Concept and Code Scrapping By Commanderbass:
 		https://next.nexusmods.com/profile/Commanderbass?gameId=2590
+		
 		Active Effects, Emote Bubble, Stealth Meter, Perkpopup, Code Sanity Checking, and So Much More By Ms.Zelia:
 		https://next.nexusmods.com/profile/MsZelia?gameId=2590
 	
@@ -236,23 +456,16 @@
 			
 		3} Some Options Take a Second to Update Their Settings.
 		
-		For Elements Not Covered Such as Level Up Animation Try Fanfare Free by Mapex:
+		For Elements Not Covered Such as "Level Up Animation" Try Fanfare Free by Mapex:
 		Nexus Link: https://www.nexusmods.com/fallout76/mods/1293
 	-->
+	
 	<ImmersiveTweaks>
 		<Debug>
 			<Display>false</Display>
+			<Element>PartyResolutionContainer_mc.HUDPartyListBase_mc.PartyList.List_mc.EntryHolder_mc</Element>
 		</Debug>
-		<WaterMark>
-			<!--Settings for Default HUD Editor WaterMark-->
-			<HideDefault>true</HideDefault>
-			<CustomWaterMark>true</CustomWaterMark>
-				<CustomWaterMarkEntry>Like And Subscribe</CustomWaterMarkEntry>
-			<!--Settings for HUD Editor Edit Mode WaterMark-->
-			<HideEditMode>true</HideEditMode>
-			<CustomEditMark>true</CustomEditMark>
-				<CustomEditMarkEntry>Edit Mode Enabled</CustomEditMarkEntry>
-		</WaterMark>
+
 		<ActiveEffects>
 			<Hide>false</Hide>
 			<Crouch>false</Crouch>
@@ -263,6 +476,7 @@
 		-->
 			<OnlyNegativeEffects>false</OnlyNegativeEffects>
 		</ActiveEffects>
+		
 		<Ap>
 			<Hide>false</Hide>
 			<Crouch>false</Crouch>
@@ -270,37 +484,49 @@
 			<Fade>false</Fade>
 				<FadePer>25</FadePer>
 		</Ap>
+		
+		<AreaVoiceList>
+			<Hide>false</Hide>
+			<Crouch>false</Crouch>
+		</AreaVoiceList>
+		
 		<Compass>
 			<Hide>false</Hide>
 		<!--Weird Base Game Bug: Sometimes When Crouched You Will Lose Compass Markers for NPCs.-->
 			<Crouch>false</Crouch>
 		</Compass>
+		
 		<Emote>
 		<!--Hides the Emote Widget on the Side of the Screen-->
 			<HideEmoteWidget>false</HideEmoteWidget>
 		<!--Disables All Above Head Pop-Ups. Includes: Emotes, Trade Pop-Ups, Revive Requests, Fear Emotes.-->
 			<HidePlayerEmoteBubble>false</HidePlayerEmoteBubble>
 		</Emote>
+		
 		<FeralMeter>
+		<!--Hides the Bar, Leaving the Skull Status Icon-->	
+			<SkullOnly>false</SkullOnly>
 			<Hide>false</Hide>
 			<Crouch>false</Crouch>
 			<VaTs>false</VaTs>
 			<Fade>false</Fade>
 				<FadePer>75</FadePer>
-		<!--
-			Scale Does Nothing Above Max Scale [1.5].
-		-->
-			<Scale>1.0</Scale>
-			<X>0</X>
-			<Y>0</Y>	
 		</FeralMeter>
+		
 		<FusionCoreMeter>
+		<!--Hides the Bar, Leaving the Fusion Core Count + Icon-->	
+			<FusionCountOnly>false</FusionCountOnly>
 			<Hide>false</Hide>
 			<Crouch>false</Crouch>
 			<VaTs>false</VaTs>
 			<Fade>false</Fade>
 				<FadePer>10</FadePer>
 		</FusionCoreMeter>
+		
+		<!--
+			Pop-up When Your Current Fusion Core Is Low or Empty,
+			And You Have No Spares
+		-->
 		<FusionCoreWarning>
 			<Hide>false</Hide>
 		<!--
@@ -312,17 +538,29 @@
 				<LowBtry>Shit, Cores Getting Low</LowBtry>
 				<NoBtry>Fuck, Out of Juice</NoBtry>
 			</CustomText>
-		<!--
-		Scale Does Nothing Above Max Scale [1.5].
-		-->
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
 		</FusionCoreWarning>
+		
+		<GlowMeter>
+		<!--
+		Separate the Glow Meter From the HP Bar
+		By Default it Uses the HP Bar Settings
+		For Hide/Crouch/Ect.
+		-->	
+			<Separate>false</Separate>
+				<Hide>false</Hide>
+				<Crouch>false</Crouch>
+				<VaTs>false</VaTs>
+				<Fade>false</Fade>
+					<FadePer>75</FadePer>	
+		</GlowMeter>
+		
 		<HungerThirst>
 			<Hide>false</Hide>
 			<Crouch>false</Crouch>
 		</HungerThirst>
+		
+		<!-- HP Options Will Effect Glow Meter
+			Unless Glow Separation is Turned on -->
 		<Hp>
 			<Hide>false</Hide>
 			<Crouch>false</Crouch>
@@ -330,80 +568,69 @@
 			<Fade>false</Fade>
 				<FadePer>10</FadePer>
 		</Hp>
-		<!--
-			Scale and movment options for the orginal improved healthbar mod [https://www.nexusmods.com/fallout76/mods/368]
-			Only enable if you are running the mod, and if you want to edit the postion
-			Only edits the HP% Counter.
-		-->
-		<ImprovedHealthBar>
-			<Enable>true</Enable>
-				<Scale>1.0</Scale>
-				<X>-250</X>
-				<Y>0</Y>
-		</ImprovedHealthBar>
+
 		<Indicators>
+		
 		<!--Hides the Arrow Pointing at Nearby Explosion Sources-->
 			<HideExplosiveIndicators>false</HideExplosiveIndicators>
+			
 		<!--Hides the Arrow Indicating Damage Taken and its Direction-->
 			<HideDirectionalHitIndicator>false</HideDirectionalHitIndicator>
+			
 		<!--Scale Options for the Floating Dmg Numbers. -->
-			<FloatingDmgNumbScale>1.0</FloatingDmgNumbScale>
+			<FloatingDmgNumbScale>1</FloatingDmgNumbScale>
+			
 		</Indicators>
+		
 		<InteractPrompts>
+		
 		<!--Quickloot (which annoyingly) applies to some containers rollover-->
 			<QuickLoot>
 				<Hide>false</Hide>
 				<Crouch>false</Crouch>
 			</QuickLoot>
+			
 		<!--Frobber is interact prompts like unlicking locked doors and touching NPCs-->
 			<Frobber>
 				<Hide>false</Hide>
 				<Crouch>false</Crouch>
 			</Frobber>
+			
 		<!--RollOver is essentially the same as Frobber (interact prompts)-->
 			<RollOver>
 				<Hide>false</Hide>
 				<Crouch>false</Crouch>
 			</RollOver>
+			
 		</InteractPrompts>
-		<OverkillStacks>
-			<Hide>false</Hide>
-			<VaTs>false</VaTs>
-		<!--
-			Movment options for Overkill Stacks
-		-->
-				<X>0</X>
-				<Y>0</Y>
-		</OverkillStacks>
+		
 		<PerkPopUp>
 			<Hide>false</Hide>
-		<!--
-			Scale Does Nothing Above Max Scale [1.5].
-		-->
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
 		</PerkPopUp>
+		
 		<RadDamageIndicator>
 			<Hide>false</Hide>
 				<OnlyHideSymbol>false</OnlyHideSymbol>
 				<OnlyHideText>false</OnlyHideText>
+			<!-- Replaces Rad Count with Custom Text -->	
 			<CustomText>
 				<Enable>false</Enable>
-				<Text>Air is Getting Heavy</Text>
+			<!-- Human Class Custom Text, Dynamic Detects your Class-->	
+				<Human>
+					<Text>Air is Getting Heavy</Text>
+				</Human>
+			<!-- Ghoul Class Custom Text, Dynamic Detects your Class-->	
+				<Ghoul>
+					<Text>Breathe it In</Text>
+				</Ghoul>
 			</CustomText>
-		<!--
-		Scale Does Nothing Above Max Scale [1.5].
-		-->
-			<Scale>1</Scale>
-			<X>0</X>
-			<Y>0</Y>
 		</RadDamageIndicator>
+		
 		<StealthMeter>
 			<Hide>false</Hide>
-		<!--Only Display When in Caution or Danger. Can Run With ThiefSense.-->
+		<!--Only Display the Stealth Meter When in Caution or Danger. Can Run With ThiefSense.-->
 			<SpiderSense>false</SpiderSense>
-		<!--Only Display When Detected. Can Run with SpiderSense.-->
+		<!--Only Display the Stealth Meter When Detected. Can Run with SpiderSense.-->
 			<ThiefSense>false</ThiefSense>
 		<!--Allows You to Edit The Text Shown When in the 4 States. Updates on State Change-->	
 			<CustomText>
@@ -414,162 +641,506 @@
 				<DangerText>SHIT! FUCK!</DangerText>
 			</CustomText>
 		<!--Disables the [] on the Stealth Meter.-->
-		<DisableBrackets>false</DisableBrackets>
+			<DisableBrackets>false</DisableBrackets>
 		</StealthMeter>
+		
 		<TeamPanel>
-		<!--Any Team Options Will Also Hide the Area Chat indicator-->
 			<Hide>false</Hide>
 			<Crouch>false</Crouch>
 		<!--Hides the Team Panel if You Are the Only Player on Team.-->
 			<HideEmptyTeam>false</HideEmptyTeam>
-		<!--Hides the Small Emote Icon.-->	
-			<HideEmote>false</HideEmote>
+		<!-- 
+			Enables Teamate Glow Level Tracking,
+			Which is Broken Due to a Bug.
+			Enabling will Darken the HP Bar.
+		-->
+			<Glow>
+				<Enable>false</Enable>
+			</Glow>
+
+		<!-- 
+			Removes Usernames from the Team Panel
+			
+			Will Hide:
+			Username[s]
+			Chat Mic Indicator
+			Mini Team Emote Indicator
+			Shared Perk Card Indicator
+			Daily Ops - Expo Indicator Text
+			
+			DOSNT HIDE USER JOIN/LEAVE TEAM POPUP ONSCREEN
+			use Improved Social From Ms.Zelia for that:
+			https://www.nexusmods.com/fallout76/mods/2915
+		-->
+			<TeamObliterate>
+				<Enable>false</Enable>
+			</TeamObliterate>
+		<!-- 
+			Removes Usernames from the Team Panel
+			Replaces them with a Text Box
+			
+			Will Hide:
+			Username[s]
+			Chat Mic Indicator
+			Mini Team Emote Indicator
+			Shared Perk Card Indicator
+			Daily Ops - Expo Indicator Text
+			
+			DOSNT HIDE USER JOIN/LEAVE TEAM POPUP ONSCREEN
+			use Improved Social From Ms.Zelia for that:
+			https://www.nexusmods.com/fallout76/mods/2915
+			
+			Glitchy from time to time.
+			
+		-->
+			<TeamObfuscate>
+				<Enable>false</Enable>
+				<Member1>Subscribe</Member1>
+				<Member2>With</Member2>
+				<Member3>Twitch</Member3>
+				<Member4>Prime</Member4>
+				<X>0</X>
+				<Y>0.5</Y>
+			</TeamObfuscate>
+			
 		</TeamPanel>
+		
 		<Xp>
 			<Hide>false</Hide>
 		</Xp>
+		
 	</ImmersiveTweaks>
+
 	<!--
-		A bit of a small explaination for the options:
-		RGB: Color you want in hex form (FFFFCB is the default HUD color)
-		NOTE: DO NOT use very dark or very bright colors! Try to pick something pastel or less in saturation.
-		Brightness, Contrast, Saturation: self explainatory. Absolute ranges are from -100 to 100, but 00 to 50 is the highly recommended min-max.
+		Re-Color Notes: 
+		
+		+ DO NOT use very dark or very bright colors! Try to pick something pastel or less in saturation.
+		
+		+ Absolute ranges are from -100 to 100, but 00 to 50 is the highly recommended min-max.
+		
+		+ The Code use Some Intresting Math to Convert from Hex to RGB to Map Color
+		  You Will Have to Play with it
+		
+		+ The Code Tints the Element with the Color you Choose,
+		  so Try to Think of it as Mixing Paints instead of Setting a Color
+		  
+		
+		Short Explaination for the Options:
+		
+		Enable: True/False : Enable's or Disables Recoloring of That Element
+							 Must Hop Servers or Relog to Apply State Change 
+		
+		Hex: Color you want in hex form (FFFFCB is the default HUD color)
+			 Color Picker Link [Use Web Color Option]: https://tydac.ch/color/
+			 
+			 FFFFCB unsets MOST Hex options
+			 000000 Sets MOST Options to Tar Black
+		
+		Brightness: Increase or Decrease the White Balance 
+		
+		Contrast: Changes the Bright Balance Between the Lighter and Darker Pixels
+		
+		Saturation: Color Intensity
+		
+		Shout Out to Ms.Zelia for De-obfuscating All the Odd Callnames:
+		https://next.nexusmods.com/profile/MsZelia?gameId=2590
+	
 	-->
+	
 	<Colors>
-		<!--Tints the hitmarker towards the given colour-->
-		<!--KEEP IN MIND: the marker is red by default ingame-->
-		<HitMarkerTint>
-			<RGB>881111</RGB>
+
+	<!--Bar Showing Your Crit Charge in Vats-->
+			<CritMeter>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</CritMeter>	
+		
+	<!-- Direction and Map Marker Indicator -->
+			<Compass>
+		<!--
+			Set this to true if you use TZMapMarkers.
+			Disables the coloring of compass markers.
+		-->
+			<TZMapMarkers>false</TZMapMarkers>
+			
+			<Enable>false</Enable>
+			<Hex>FFFFCB</Hex>
+			<Brightness>0</Brightness>
+			<Contrast>0</Contrast>
+			<Saturation>0</Saturation>
+			</Compass>
+		
+	<!--Pop Up Showing Your Dmg When you Hit Something-->	
+		<DmgNumb>
+			<Enable>false</Enable>
+			<Hex>FFFFCB</Hex>
+			<Brightness>0</Brightness>
+			<Contrast>0</Contrast>
+			<Saturation>0</Saturation>
+		</DmgNumb>	
+		
+	<!--Hp Bar For Targeted Enemy-->
+		<EnemyHealthMeter>
+			<Enable>false</Enable>
+			<Hex>FFFFCB</Hex>
+			<Brightness>0</Brightness>
+			<Contrast>0</Contrast>
+			<Saturation>0</Saturation>
+		</EnemyHealthMeter>
+		
+	<!--Floating handles things like floating quest markers, Team Indicators, etc-->
+		<Floating>
+			<Enable>false</Enable>
+			<Hex>FFFFCB</Hex>
+			<Brightness>0</Brightness>
+			<Contrast>0</Contrast>
+			<Saturation>0</Saturation>
+		</Floating>
+	
+	<!--Pop Up Showing if You Hit Something-->
+		<HitMarker>
+			<Enable>false</Enable>
+			<Hex>881111</Hex>
 			<Brightness>-10</Brightness>
 			<Contrast>10</Contrast>
 			<Saturation>10</Saturation>
-		</HitMarkerTint>
+		</HitMarker>
 		
-		<HUD>
-			<!--Set this to false to completely disable all HUD recoloring. Requires leaving/rejoining server to apply.-->
-			<EnableRecoloring>true</EnableRecoloring>
-			
-			<!--Show a percentage value above the thirst and hunger bars-->
-			<ThirstHungerPercentShow>false</ThirstHungerPercentShow>
-			
-			<!--Prevents thirst and hunger from auto-hiding after a few seconds-->
-			<AlwaysShowThirstHunger>false</AlwaysShowThirstHunger>
-			
-			<!--EditMode allows you to view changes to this file in real time-->
-			<EditMode>true</EditMode>
-			
-			<!--DO NOT CHANGE THIS SETTING, IT WILL BE REMOVED AT A FUTURE TIME-->
-			<CustomCrosshair>true</CustomCrosshair>
-			
-			<!--You can set the opacity of the crosshair down below what the rest of the HUD is.-->
-			<CrosshairOpacity>1</CrosshairOpacity>
-			
-			<!--set this to true if you use TZMapMarkers. Disables the coloring of compass markers.-->
-			<TZMapMarkers>false</TZMapMarkers>
-		</HUD>
-		
-		<!--RightMeters are things like ammo, active effects, thirst/hunger, etc-->
-		<RightMeters>
-			<RGB>FFFFCB</RGB>
-			<Brightness>0</Brightness>
-			<Contrast>0</Contrast>
-			<Saturation>0</Saturation>
-		</RightMeters>
-		
-		<!--LeftMeters is mainly health and rads-->
-		<LeftMeters>
-			<RGB>FFFFCB</RGB>
-			<Brightness>0</Brightness>
-			<Contrast>0</Contrast>
-			<Saturation>0</Saturation>
-			<!--remember, rads bar is light red/almost orange by default, radsbarRGB tints the bar towards your colour, might not be 100% accurate-->
-			<RadsBarRGB>F67259</RadsBarRGB>
-			<RadsBarBrightness>-10</RadsBarBrightness>
-			<RadsBarContrast>0</RadsBarContrast>
-			<RadsBarSaturation>0</RadsBarSaturation>
-		</LeftMeters>
-		
-		<!--Notifications are like Sneak damage etc-->
-		<Notifications>
-			<RGB>FFFFCB</RGB>
-			<Brightness>0</Brightness>
-			<Contrast>0</Contrast>
-			<Saturation>0</Saturation>
-		</Notifications>
-		
-		<!--HudFrobber is the loot menu for world containers, NPC interaction prompt, doors etc-->
-		<HudFrobber>
-			<RGB>FFFFCB</RGB>
-			<Brightness>0</Brightness>
-			<Contrast>0</Contrast>
-			<Saturation>0</Saturation>
-		</HudFrobber>
-		
-		<!--QuestTracker is the upper right quest panel-->
+	<!--Top Right List of Active Quests Tagged in Pipboy Questlog-->
 		<QuestTracker>
-			<RGB>FFFFCB</RGB>
+			<Enable>false</Enable>
+			<Hex>FFFFCB</Hex>
 			<Brightness>0</Brightness>
 			<Contrast>0</Contrast>
 			<Saturation>0</Saturation>
 		</QuestTracker>
 		
-		<!--TopCenter is the enemy health/sneak bar-->
-		<TopCenter>
-			<RGB>FFFFCB</RGB>
-			<Brightness>0</Brightness>
-			<Contrast>0</Contrast>
-			<Saturation>0</Saturation>
-		</TopCenter>
+	<!--
+		Sneaking Meter (Hidden, Danger, etc)
+		Direct Colors vs Tints.
+	-->
+		<StealthMeter>
+			<Enable>false</Enable>
+			<Hidden>FFFFCB</Hidden>
+			<Detected>FFFFCB</Detected>
+			<Caution>FFC300</Caution>
+			<Danger>FF0004</Danger>
+		</StealthMeter>
 		
-		<!--BottomCenter is Subtitles, Compass and Crit Meter-->
-		<BottomCenter>
-			<RGB>FFFFCB</RGB>
-			<Brightness>0</Brightness>
-			<Contrast>0</Contrast>
-			<Saturation>0</Saturation>
-			
-			<CompassRGB>FFFFCB</CompassRGB>
-			<CompassBrightness>0</CompassBrightness>
-			<CompassContrast>0</CompassContrast>
-			<CompassSaturation>0</CompassSaturation>
-		</BottomCenter>
 		
-		<!--Announce is the text of new events etc-->
-		<Announce>
-			<RGB>FFFFCB</RGB>
-			<Brightness>0</Brightness>
-			<Contrast>0</Contrast>
-			<Saturation>0</Saturation>
-		</Announce>
-		
-		<!--Center is crosshair, quickloot, interaction menus of things not covered in HudFrobber-->
-		<Center>
-			<RGB>FFFFCB</RGB>
-			<Brightness>0</Brightness>
-			<Contrast>0</Contrast>
-			<Saturation>0</Saturation>
-		</Center>
-		
-		<!--Team panel on HUD-->
+	<!--Team panel on HUD-->
 		<Team>
-			<RGB>FFFFCB</RGB>
-			<Brightness>0</Brightness>
-			<Contrast>0</Contrast>
-			<Saturation>0</Saturation>
-			<!--remember, rads bar is light red/almost orange by default, radsbarRGB tints the bar towards your colour, might not be 100% accurate-->
-			<RadsBarRGB>F67259</RadsBarRGB>
-			<RadsBarBrightness>-10</RadsBarBrightness>
-			<RadsBarContrast>0</RadsBarContrast>
-			<RadsBarSaturation>0</RadsBarSaturation>
+		
+	<!-- 
+		Your Team Members Glow Shown on Their Hp
+		Unused Atm Due to a Bug
+	-->
+			<Glow>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</Glow>
+			
+	<!-- Teamate Hp and Other Things-->
+			<Hp>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</Hp>
+			
+	<!-- The Small Crad Showing that a Team Member is Sharing a Perk-->		
+			<PerkCard>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>-20</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</PerkCard>
+			
+	<!-- Your Team Members Rads Shown on Their Hp-->
+			<RadsBar>
+				<Enable>false</Enable>
+				<Hex>81cd38</Hex>
+				<Brightness>20</Brightness>
+				<Contrast>20</Contrast>
+				<Saturation>20</Saturation>
+			</RadsBar>
+		
+	<!-- 
+		the x[PlayerCount]
+		Direct Colors vs Tints.
+	-->
+			<TeamBonus>
+				<Enable>false</Enable>
+				<Hex>447cc3</Hex>
+			</TeamBonus>	
+		
+	<!-- 
+		Teamate Type
+		Casual, Raid, Event, Ect.
+		Direct Colors vs Tints.
+	-->
+			<TeamName>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+			</TeamName>	
+		
+	<!-- 
+		Teamate Usernames
+		Direct Colors vs Tints.
+	-->
+			<UserName>
+				<Enable>false</Enable>
+				<Hex>f4cb5b</Hex>
+			</UserName>		
+			
 		</Team>
 		
-		<!--Floating handles things like the damage numbers, floating quest markers, etc-->
-		<Floating>
-			<RGB>FFFFCB</RGB>
-			<Brightness>0</Brightness>
-			<Contrast>0</Contrast>
-			<Saturation>0</Saturation>
-		</Floating>
+		<InteractPrompts>
+			
+		<!--Quickloot, annoyingly, applies to some containers rollover-->
+			<QuickLoot>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</QuickLoot>
+			
+		<!--Frobber are interact prompts like unlicking locked doors and interacting with NPCs-->
+			<Frobber>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</Frobber>
+			
+		<!--RollOver is essentially the same as Frobber (interact prompts)-->
+			<RollOver>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</RollOver>
+			
+		</InteractPrompts>
+		
+		<HUD_Notifications>
+		
+		<!-- quest/event complete/rewards list -->
+			<Announce>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</Announce>
+		
+		<!--Area/Team Voice Chat Indicator that List Players Talking Around You-->		
+			<AreaVoiceList>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</AreaVoiceList>
+		
+		<!--
+			Pop-up When Your Current Fusion Core Is Low or Empty,
+			And You Have No Spares
+			Direct Colors vs Tints.
+		-->
+			<FusionCoreWarning>
+			<!-- When your last Fusion Core is Below 20% -->
+				<Low_Charge>
+					<Enable>false</Enable>
+					<Hex>FF5E00</Hex>
+				</Low_Charge>
+			<!-- When your out of Fusion Cores -->
+				<No_Charge>
+					<Enable>false</Enable>
+					<Hex>FF0004</Hex>
+				</No_Charge>
+			</FusionCoreWarning>
+		
+		<!--Notifications are Pop-Ups Like Sneak damage, New Radio Signels, ect-->
+			<Notification>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</Notification>
+		
+		<!-- Pop-Up When Taking Rad Dmg-->
+			<RadDamageIndicator>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>-10</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</RadDamageIndicator>
+		
+		<!-- Description of Onscreen Voicelines -->
+			<Subtitles>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</Subtitles>
+		
+		<!-- Pop-Up Showing XP Gained from Action -->
+			<XPBar>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</XPBar>
+			
+		</HUD_Notifications>
+		
+		<LeftMeters>
+		
+		<!-- 
+			Bar Shown in PA When PA HUD is Set to False
+			Tracks Fusion Core % and Amount.
+			Auto Detects if in Proper Hud / Class.
+		-->	
+			<FusionCoreMeter>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</FusionCoreMeter>
+		
+		<!-- Bar Showing Your Current Health -->
+			<HpMeter>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</HpMeter>
+		
+		<!--
+			Bar for Ghouls that Shows Current Glow Level
+			Only Applies if Your Ghoul Class, Auto Detects
+		-->
+			<GlowMeter>
+				<Enable>false</Enable>
+				<Hex>81cd38</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</GlowMeter>
+		
+		<!--
+			Bar Showing Your Current Rad Total 
+			Only Applies if Your Human Class, Auto Detects
+		-->	
+			<RadBar>
+				<Enable>false</Enable>
+				<Hex>87006C</Hex>
+				<Brightness>-10</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</RadBar>
+			
+		</LeftMeters>
+		
+		<RightMeters>
+		
+		<!--
+			Displayed Effects on the Bottom Right.
+			Overweight, Addiction, Mutations, Buffs, Ect.
+		-->
+			<ActiveEffects>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</ActiveEffects>
+		
+
+		<!-- Shows Current Amount of Ammo in Selected Gun -->	
+			<AmmoCount>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</AmmoCount>
+		
+		<!-- Bar Showing Current Ap Total -->
+			<APMeter>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</APMeter>
+		
+		<!-- Grenade / Throwable Counter -->
+			<ExplosiveAmmoCount>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</ExplosiveAmmoCount>
+		
+		<!--
+			Bar for Ghouls that Shows Current Feral Level
+			Only Applies if Your Ghoul Class, Auto Detects
+		-->
+			<FeralMeter>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</FeralMeter>
+		
+		<!--
+			Bar Showing Current Hunger Level
+			For Human Class Only, Auto Detects.
+		-->
+			<HungerMeter>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</HungerMeter>
+		
+		<!--
+			Bar Showing Current Thirst Level
+			For Human Class Only, Auto Detects.
+		-->	
+			<ThirstMeter>
+				<Enable>false</Enable>
+				<Hex>FFFFCB</Hex>
+				<Brightness>0</Brightness>
+				<Contrast>0</Contrast>
+				<Saturation>0</Saturation>
+			</ThirstMeter>
+			
+		</RightMeters>
+		
 	</Colors>
+	
 </HUDEditor>
 
