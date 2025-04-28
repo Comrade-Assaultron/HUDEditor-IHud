@@ -330,8 +330,20 @@
 	<OtherImprovements>
 		
 		<APMeter>
-		<!--Shows/hides the "AP" text-->
-			<ShowAPLabel>true</ShowAPLabel>
+		<!--
+			Movment Options for the AP Label to the Right of the AP Meter.
+			Use X -350 to Set it to the Left Side
+		-->
+			<APLabel>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</APLabel>
+		<!--Replaces the the "AP" text to the right of the AP Meter-->
+			<CustomText>
+				<Enable>false</Enable>
+				<Text>Action Points</Text>
+			</CustomText>
 		<!--Moves the AP text to the left or right of the meter-->
 			<APLabelSide>right</APLabelSide>
 		<!--Shows/hides the AP bar background-->
@@ -375,8 +387,20 @@
 		</FlashLightWidget>
 		
 		<HpMeter>
-		<!--Shows/hides the "HP" text to the left of the HP meter-->
-			<ShowHPLabel>true</ShowHPLabel>
+		<!--
+			Movment Options for the HP Label to the Left of the HP Meter.
+			Use X +365 to Set it to the Right Side
+		-->
+			<HPLabel>
+				<Scale>1</Scale>
+				<X>0</X>
+				<Y>0</Y>
+			</HPLabel>
+		<!--Replaces the "HP" text to the left of the HP meter-->
+			<CustomText>
+				<Enable>false</Enable>
+				<Text>Health Bar</Text>
+			</CustomText>
 		<!--Moves the HP text to the left or right of the meter-->
 			<HPLabelSide>left</HPLabelSide>
 		<!--Shows/hides the HP bar background. Looks strange with ImprovedHealthBar, not a bug.-->
