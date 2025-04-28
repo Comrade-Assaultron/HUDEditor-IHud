@@ -138,6 +138,10 @@ package
       
       private var hunger:TextField;
       
+      private var HPText:TextField;
+      
+      private var APText:TextField;
+      
       private var showHealthText:TextField;
       
       private var TeamObfuscateText:TextField;
@@ -696,6 +700,14 @@ package
       
       public var MicScaleTmp:Number = 1;
       
+      public var HPTextPos:Point;
+      
+      public var HPTextScale:Number = 1;
+      
+      public var APTextPos:Point;
+      
+      public var APTextScale:Number = 1;
+      
       public var ImprovedHealthBarStateLock:int = 0;
       
       public var ImprovedHealthBarVisualSync:Boolean = false;
@@ -712,7 +724,7 @@ package
       
       public var GlowVisualSync:Boolean = false;
       
-      public var GlowPerVisualSync:Boolean = false;
+      public var GlowPerVisualSync:Boolean = true;
       
       public var FusionVisualSync:Boolean = false;
       
@@ -796,6 +808,10 @@ package
       
       private var oMicPos:Point;
       
+      private var oHPTextPos:Point;
+      
+      private var oAPTextPos:Point;
+      
       private var VisibilityChanged:int = 0;
       
       private var oHitMarkerPos:Point;
@@ -831,12 +847,6 @@ package
       private var HpBckGrdTgl:Boolean = false;
       
       private var ApBckGrdTgl:Boolean = false;
-      
-      private var hpSL:int = 0;
-      
-      private var hpML:int = 0;
-      
-      private var TpML:int = 0;
       
       private var pi:int = 0;
       
@@ -896,6 +906,8 @@ package
          this.FeralMPos = new Point();
          this.GlowMeterPos = new Point();
          this.MicPos = new Point();
+         this.HPTextPos = new Point();
+         this.APTextPos = new Point();
          this.oHpMeterPos = new Point();
          this.oAPMeterPos = new Point();
          this.oActiveEffectsPos = new Point();
@@ -932,6 +944,8 @@ package
          this.oGlowMeterPos = new Point();
          this.oMicPos = new Point();
          this.oHitMarkerPos = new Point();
+         this.oHPTextPos = new Point();
+         this.oAPTextPos = new Point();
          this.HUDNotification_mc = new this.HUDMessageItemBox();
          this.FlashLightRestored_mc = new this.FlashLightWidget();
          super();
@@ -942,6 +956,8 @@ package
          this.initWatermarkText();
          this.initThirstText();
          this.initHungerText();
+         this.initHPText();
+         this.initAPText();
          addEventListener(Event.ADDED_TO_STAGE,this.addedToStageHandler);
          trace("HUDEditor Started");
       }
@@ -957,6 +973,8 @@ package
             this.oRepUpdatesPos.y = this.topLevel.ReputationUpdates_mc.y;
             this.oLevelUpAnimPos.x = this.topLevel.LevelUpAnimation_mc.x;
             this.oLevelUpAnimPos.y = this.topLevel.LevelUpAnimation_mc.y;
+            this.oHpMeterPos.x = this.topLevel.LeftMeters_mc.HPMeter_mc.x;
+            this.oHpMeterPos.y = this.topLevel.LeftMeters_mc.HPMeter_mc.y;
             this.oAPMeterPos.x = this.topLevel.RightMeters_mc.ActionPointMeter_mc.x;
             this.oAPMeterPos.y = this.topLevel.RightMeters_mc.ActionPointMeter_mc.y;
             this.oActiveEffectsPos.x = this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.x;
@@ -1013,8 +1031,14 @@ package
             this.oHitMarkerPos.y = this.topLevel.CenterGroup_mc.HitIndicator_mc.y;
             this.oTeamPanelPos.x = this.topLevel.PartyResolutionContainer_mc.x;
             this.oTeamPanelPos.y = this.topLevel.PartyResolutionContainer_mc.y;
+            this.oHPTextPos.x = this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.x;
+            this.oHPTextPos.y = this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.y;
+            this.oAPTextPos.x = this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.x;
+            this.oAPTextPos.y = this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.y;
             this.topLevel.RightMeters_mc.HUDThirstMeter_mc.addChild(this.thirst);
             this.topLevel.RightMeters_mc.HUDHungerMeter_mc.addChild(this.hunger);
+            this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.addChild(this.HPText);
+            this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.addChild(this.APText);
             this.topLevel.HUDNotificationsGroup_mc.Messages_mc.addChild(this.HUDNotification_mc);
             this.topLevel.RightMeters_mc.FlashLightWidget_mc.addChild(this.FlashLightRestored_mc);
             this.topLevel.TopCenterGroup_mc.EnemyHealthMeter_mc.addChild(this.showHealthText);
@@ -1124,6 +1148,32 @@ package
          this.hunger.setTextFormat(hungerFormat);
          this.hunger.filters = [hungerShadow];
          this.hunger.autoSize = TextFieldAutoSize.CENTER;
+      }
+      
+      private function initHPText() : void
+      {
+         var HPTextShadow:DropShadowFilter = new DropShadowFilter(1,45,0,0.9,3,3,1,BitmapFilterQuality.HIGH,false,false,false);
+         var HPTextFormat:TextFormat = new TextFormat("$MAIN_Font_Bold",20,16777163);
+         this.HPText = new TextField();
+         HPTextFormat.align = "center";
+         this.HPText.name = "HP";
+         this.HPText.defaultTextFormat = HPTextFormat;
+         this.HPText.setTextFormat(HPTextFormat);
+         this.HPText.filters = [HPTextShadow];
+         this.HPText.autoSize = TextFieldAutoSize.CENTER;
+      }
+      
+      private function initAPText() : void
+      {
+         var APTextShadow:DropShadowFilter = new DropShadowFilter(1,45,0,0.9,3,3,1,BitmapFilterQuality.HIGH,false,false,false);
+         var APTextFormat:TextFormat = new TextFormat("$MAIN_Font_Bold",20,16777163);
+         this.APText = new TextField();
+         APTextFormat.align = "center";
+         this.APText.name = "AP";
+         this.APText.defaultTextFormat = APTextFormat;
+         this.APText.setTextFormat(APTextFormat);
+         this.APText.filters = [APTextShadow];
+         this.APText.autoSize = TextFieldAutoSize.CENTER;
       }
       
       private function initTeamObfuscateText() : void
@@ -1492,8 +1542,8 @@ package
                            {
                               if(this.xmlConfigHC.Reposition_Elements.LeftMeters.GlowMeter)
                               {
-                                 this.GlowMeterPos.x = Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.GlowMeter.X);
-                                 this.GlowMeterPos.y = Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.GlowMeter.Y);
+                                 this.GlowMeterPos.x = Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.GlowMeter.X) - Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.HpMeter.X);
+                                 this.GlowMeterPos.y = Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.GlowMeter.Y) - Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.HpMeter.Y);
                                  this.GlowMeterScale = Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.GlowMeter.Scale);
                               }
                               else
@@ -1541,8 +1591,8 @@ package
                         {
                            if(this.xmlConfigHC.Reposition_Elements.LeftMeters.GlowMeter)
                            {
-                              this.GlowMeterPos.x = Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.GlowMeter.X);
-                              this.GlowMeterPos.y = Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.GlowMeter.Y);
+                              this.GlowMeterPos.x = Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.GlowMeter.X) - Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.HpMeter.X);
+                              this.GlowMeterPos.y = Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.GlowMeter.Y) - Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.HpMeter.Y);
                               this.GlowMeterScale = Number(this.xmlConfigHC.Reposition_Elements.LeftMeters.GlowMeter.Scale);
                            }
                            else
@@ -2406,14 +2456,13 @@ package
          }
          else
          {
-            this.MicScaleTmp = Number(this.xmlConfigHC.Reposition_Elements.HUD_Notifications.AreaVoiceList.Scale);
             if(this.inPowerArmorwthPAHUD)
             {
-               this.MicScale = this.MicScaleTmp / this.TeamPanelScalePA;
+               this.MicScale = Number(this.xmlConfigHC.Reposition_Elements.HUD_Notifications.AreaVoiceList.Scale) / this.TeamPanelScalePA;
             }
             else if(!this.inPowerArmorwthPAHUD)
             {
-               this.MicScale = this.MicScaleTmp / this.TeamPanelScale;
+               this.MicScale = Number(this.xmlConfigHC.Reposition_Elements.HUD_Notifications.AreaVoiceList.Scale) / this.TeamPanelScale;
             }
             this.topLevel.PartyResolutionContainer_mc.HUDPartyListBase_mc.AreaVoiceList_mc.scaleX = this.MicScale;
             this.topLevel.PartyResolutionContainer_mc.HUDPartyListBase_mc.AreaVoiceList_mc.scaleY = this.MicScale;
@@ -2572,19 +2621,35 @@ package
          }
          if(this.xmlConfigHC.OtherImprovements.HpMeter.ShowHPLabel == "false")
          {
-            this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.DisplayText_tf.text = "";
+            this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.DisplayText_tf.visible = false;
+            this.HPText.visible = false;
+         }
+         else if(this.xmlConfigHC.OtherImprovements.HpMeter.CustomText.Enable == "true")
+         {
+            this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.DisplayText_tf.visible = false;
+            this.HPText.visible = true;
+            this.HPText.text = String(this.xmlConfigHC.OtherImprovements.HpMeter.CustomText.Text.toString());
          }
          else if(this.xmlConfigHC.OtherImprovements.HpMeter.ShowHPLabel == "true")
          {
-            this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.DisplayText_tf.text = "HP";
+            this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.DisplayText_tf.visible = true;
+            this.HPText.visible = false;
          }
          if(this.xmlConfigHC.OtherImprovements.APMeter.ShowAPLabel == "false")
          {
-            this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.DisplayText_tf.text = "";
+            this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.DisplayText_tf.visible = false;
+            this.APText.visible = false;
+         }
+         else if(this.xmlConfigHC.OtherImprovements.APMeter.CustomText.Enable == "true")
+         {
+            this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.DisplayText_tf.visible = false;
+            this.APText.visible = true;
+            this.APText.text = String(this.xmlConfigHC.OtherImprovements.APMeter.CustomText.Text.toString());
          }
          else if(this.xmlConfigHC.OtherImprovements.APMeter.ShowAPLabel == "true")
          {
-            this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.DisplayText_tf.text = "AP";
+            this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.DisplayText_tf.visible = true;
+            this.APText.visible = false;
          }
          if(this.xmlConfigHC.OtherImprovements.HpMeter.ShowBarBG == "false")
          {
@@ -2622,22 +2687,6 @@ package
                ApBckGrdTgl = true;
                this.topLevel.RightMeters_mc.ActionPointMeter_mc.APBarFrame_mc.visible = true;
             }
-         }
-         if(this.xmlConfigHC.Reposition_Elements.LeftMeters.HpMeter.HPLabelSide == "left")
-         {
-            this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.x = -45 + this.HpMeterPos.x;
-         }
-         else if(this.xmlConfigHC.Reposition_Elements.LeftMeters.HpMeter.HPLabelSide == "right")
-         {
-            this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.x = 325 + this.HpMeterPos.x;
-         }
-         if(this.xmlConfigHC.OtherImprovements.APMeter.APLabelSide == "left")
-         {
-            this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.x = -321 + this.APMeterPos.x;
-         }
-         else if(this.xmlConfigHC.OtherImprovements.APMeter.APLabelSide == "right")
-         {
-            this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.x = 43 + this.APMeterPos.x;
          }
          if(this.xmlConfigHC.dbg.e != undefined && this.xmlConfigHC.dbg.e == "191x7")
          {
@@ -2756,6 +2805,42 @@ package
                displayText("XML problem (resourcemeters): " + e.toString() + "," + linenum);
             }
          }
+         if(this.xmlConfigHC.OtherImprovements.HpMeter.HPLabel != undefined)
+         {
+            this.HPTextScale = Number(this.xmlConfigHC.OtherImprovements.HpMeter.HPLabel.Scale);
+            this.HPTextPos.x = Number(this.xmlConfigHC.OtherImprovements.HpMeter.HPLabel.X);
+            this.HPTextPos.y = Number(this.xmlConfigHC.OtherImprovements.HpMeter.HPLabel.Y);
+            this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.x = this.HPTextPos.x + this.oHPTextPos.x;
+            this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.y = this.HPTextPos.y + this.oHPTextPos.y;
+            if(this.HPTextScale <= this.maxScale)
+            {
+               this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.scaleX = HPTextScale;
+               this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.scaleY = HPTextScale;
+            }
+            else
+            {
+               this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.scaleX = 1;
+               this.topLevel.LeftMeters_mc.HPMeter_mc.DisplayText_mc.scaleY = 1;
+            }
+         }
+         if(this.xmlConfigHC.OtherImprovements.APMeter.APLabel != undefined)
+         {
+            this.APTextScale = Number(this.xmlConfigHC.OtherImprovements.APMeter.APLabel.Scale);
+            this.APTextPos.x = Number(this.xmlConfigHC.OtherImprovements.APMeter.APLabel.X);
+            this.APTextPos.y = Number(this.xmlConfigHC.OtherImprovements.APMeter.APLabel.Y);
+            this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.x = this.oAPTextPos.x + this.APTextPos.x;
+            this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.y = this.oAPTextPos.y + this.APTextPos.y;
+            if(this.APTextScale <= this.maxScale)
+            {
+               this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.scaleX = APTextScale;
+               this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.scaleY = APTextScale;
+            }
+            else
+            {
+               this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.scaleX = 1;
+               this.topLevel.RightMeters_mc.ActionPointMeter_mc.DisplayText_mc.scaleY = 1;
+            }
+         }
          if(this.xmlConfigHC.Reposition_Elements != undefined)
          {
             if(this.inPowerArmor == true && this.powerArmorHUDEnabled == true)
@@ -2872,50 +2957,8 @@ package
             }
             this.topLevel.TopCenterGroup_mc.getChildAt(0).x = this.oSneakPos.x + this.SneakMeterPos.x;
             this.topLevel.TopCenterGroup_mc.getChildAt(0).y = this.oSneakPos.y + this.SneakMeterPos.y;
-            if(this.oHpMeterPos.x != this.HpMeterPos.x)
-            {
-               hpML = 0;
-               while(hpML < this.topLevel.LeftMeters_mc.HPMeter_mc.numChildren)
-               {
-                  if(this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpML) != this.topLevel.LeftMeters_mc.HPMeter_mc.GlowMeter_mc)
-                  {
-                     this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpML).x = this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpML).x - this.oHpMeterPos.x;
-                  }
-                  hpML++;
-               }
-               this.oHpMeterPos.x = this.HpMeterPos.x;
-               hpML = 0;
-               while(hpML < this.topLevel.LeftMeters_mc.HPMeter_mc.numChildren)
-               {
-                  if(this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpML) != this.topLevel.LeftMeters_mc.HPMeter_mc.GlowMeter_mc)
-                  {
-                     this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpML).x = this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpML).x + this.HpMeterPos.x;
-                  }
-                  hpML++;
-               }
-            }
-            if(this.oHpMeterPos.y != this.HpMeterPos.y)
-            {
-               hpML = 0;
-               while(hpML < this.topLevel.LeftMeters_mc.HPMeter_mc.numChildren)
-               {
-                  if(this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpML) != this.topLevel.LeftMeters_mc.HPMeter_mc.GlowMeter_mc)
-                  {
-                     this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpML).y = this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpML).y - this.oHpMeterPos.y;
-                  }
-                  hpML++;
-               }
-               this.oHpMeterPos.y = this.HpMeterPos.y;
-               hpML = 0;
-               while(hpML < this.topLevel.LeftMeters_mc.HPMeter_mc.numChildren)
-               {
-                  if(this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpML) != this.topLevel.LeftMeters_mc.HPMeter_mc.GlowMeter_mc)
-                  {
-                     this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpML).y = this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpML).y + this.HpMeterPos.y;
-                  }
-                  hpML++;
-               }
-            }
+            this.topLevel.LeftMeters_mc.HPMeter_mc.x = this.oHpMeterPos.x + this.HpMeterPos.x;
+            this.topLevel.LeftMeters_mc.HPMeter_mc.y = this.oHpMeterPos.y + this.HpMeterPos.y;
             this.topLevel.RightMeters_mc.ActionPointMeter_mc.x = this.oAPMeterPos.x + this.APMeterPos.x;
             this.topLevel.RightMeters_mc.ActionPointMeter_mc.y = this.oAPMeterPos.y + this.APMeterPos.y;
             this.topLevel.RightMeters_mc.HUDActiveEffectsWidget_mc.x = this.oActiveEffectsPos.x + this.ActiveEffectsPos.x;
@@ -3417,7 +3460,7 @@ package
                   this.XPBarScale = Number(this.xmlConfigHC.Reposition_Elements.HUD_Notifications.XPBar.Scale);
                }
             }
-            if(this.xmlConfigHC.Reposition_Elements.XPBar.X != undefined)
+            if(this.xmlConfigHC.Reposition_Elements.HUD_Notifications.XPBar.X != undefined)
             {
                this.XPBarPos.x = Number(this.xmlConfigHC.Reposition_Elements.HUD_Notifications.XPBar.X);
             }
@@ -3425,7 +3468,7 @@ package
             {
                this.XPBarPos.x = 0;
             }
-            if(this.xmlConfigHC.Reposition_Elements.XPBar.Y != undefined)
+            if(this.xmlConfigHC.Reposition_Elements.HUD_Notifications.XPBar.Y != undefined)
             {
                this.XPBarPos.y = Number(this.xmlConfigHC.Reposition_Elements.HUD_Notifications.XPBar.Y);
             }
@@ -3748,8 +3791,8 @@ package
             }
             if(this.GlowMeterScale <= this.maxScale && !this.GlowVisualSync)
             {
-               this.topLevel.LeftMeters_mc.HPMeter_mc.GlowMeter_mc.scaleX = this.GlowMeterScale;
-               this.topLevel.LeftMeters_mc.HPMeter_mc.GlowMeter_mc.scaleY = this.GlowMeterScale;
+               this.topLevel.LeftMeters_mc.HPMeter_mc.GlowMeter_mc.scaleX = this.GlowMeterScale / this.HpMeterScale;
+               this.topLevel.LeftMeters_mc.HPMeter_mc.GlowMeter_mc.scaleY = this.GlowMeterScale / this.HpMeterScale;
             }
             else if(this.GlowVisualSync)
             {
@@ -3848,42 +3891,18 @@ package
             }
             if(this.HpMeterScale <= this.maxScale && !this.HpVisualSync)
             {
-               hpSL = 0;
-               while(hpSL < this.topLevel.LeftMeters_mc.HPMeter_mc.numChildren)
-               {
-                  if(this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpSL) != this.topLevel.LeftMeters_mc.HPMeter_mc.GlowMeter_mc)
-                  {
-                     this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpSL).scaleX = this.HpMeterScale;
-                     this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpSL).scaleY = this.HpMeterScale;
-                  }
-                  hpSL++;
-               }
+               this.topLevel.LeftMeters_mc.HPMeter_mc.scaleX = this.HpMeterScale;
+               this.topLevel.LeftMeters_mc.HPMeter_mc.scaleY = this.HpMeterScale;
             }
             else if(this.HpVisualSync)
             {
-               hpSL = 0;
-               while(hpSL < this.topLevel.LeftMeters_mc.HPMeter_mc.numChildren)
-               {
-                  if(this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpSL) != this.topLevel.LeftMeters_mc.HPMeter_mc.GlowMeter_mc)
-                  {
-                     this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpSL).scaleX = 0;
-                     this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpSL).scaleY = 0;
-                  }
-                  hpSL++;
-               }
+               this.topLevel.LeftMeters_mc.HPMeter_mc.scaleX = 0;
+               this.topLevel.LeftMeters_mc.HPMeter_mc.scaleY = 0;
             }
             else
             {
-               hpSL = 0;
-               while(hpSL < this.topLevel.LeftMeters_mc.HPMeter_mc.numChildren)
-               {
-                  if(this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpSL) != this.topLevel.LeftMeters_mc.HPMeter_mc.GlowMeter_mc)
-                  {
-                     this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpSL).scaleX = 1;
-                     this.topLevel.LeftMeters_mc.HPMeter_mc.getChildAt(hpSL).scaleY = 1;
-                  }
-                  hpSL++;
-               }
+               this.topLevel.LeftMeters_mc.HPMeter_mc.scaleX = 1;
+               this.topLevel.LeftMeters_mc.HPMeter_mc.scaleY = 1;
             }
             if(this.NotificationScale <= this.maxScale)
             {
